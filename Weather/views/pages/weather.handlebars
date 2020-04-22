@@ -1,0 +1,46 @@
+<div class="info-card">
+    <div class="info-card-head">
+        <h2>Weather Information</h2>
+    </div>
+    <div class="info-card-body">
+        <div class="info-card-body-description">
+            <p id="tag-location">{{{weather.location}}}</p>
+            <p id="tag-time">{{{weather.time}}}</p>
+            <div class="rows">
+                <div class="fields">
+                    <h1 id="tag-temp">{{{weather.temp}}}</h1>
+                    <h3 id="tag-status">{{{weather.status}}}</h3>
+                    <p id="tag-feels-like">Feels Like: {{{weather.feels-like}}}</p>
+                    <p id="tag-high">High: {{{weather.high}}}</p>
+                    <p id="tag-low">Low: {{{weather.low}}}</p>
+                    <p id="tag-humidity">Humidity: {{{weather.humidity}}}</p>
+                </div>
+                <div class="weather-image">
+                    <img src={{{weather.image}}} />
+                </div>
+            </div>
+        </div>
+        <div class="info-card-body-days">
+            <div class="day-1 day">
+                <p>{{{days.d1.date}}}</p>
+                <p>{{{days.d1.high_low}}}</p>
+            </div>
+            <div class="day-2 day">
+                <p>{{{days.d2.date}}}</p>
+                <p>{{{days.d2.high_low}}}</p>
+            </div>
+            <div class="day-3 day">
+                <p>{{{days.d3.date}}}</p>
+                <p>{{{days.d3.high_low}}}</p>
+            </div>
+            <div class="day-4 day">
+                <p>{{{days.d4.date}}}</p>
+                <p>{{{days.d4.high_low}}}</p>
+            </div>
+            <div class="day-5 day">
+                <p>{{{days.d5.date}}}</p>
+                <p>{{{days.d5.high_low}}}</p>
+            </div>
+        </div>
+    </div>
+</div>
