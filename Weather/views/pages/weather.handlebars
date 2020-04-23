@@ -1,46 +1,55 @@
 <div class="info-card">
-    <div class="info-card-head">
-        <h2>Weather Information</h2>
+    <div class="info-card-bg">
     </div>
-    <div class="info-card-body">
-        <div class="info-card-body-description">
-            <p id="tag-location">{{{weather.location}}}</p>
-            <p id="tag-time">{{{weather.time}}}</p>
-            <div class="rows">
-                <div class="fields">
-                    <h1 id="tag-temp">{{{weather.temp}}}</h1>
-                    <h3 id="tag-status">{{{weather.status}}}</h3>
-                    <p id="tag-feels-like">Feels Like: {{{weather.feels-like}}}</p>
-                    <p id="tag-high">High: {{{weather.high}}}</p>
-                    <p id="tag-low">Low: {{{weather.low}}}</p>
-                    <p id="tag-humidity">Humidity: {{{weather.humidity}}}</p>
-                </div>
-                <div class="weather-image">
-                    <img src={{{weather.image}}} />
-                </div>
+    <div class="info-card-content">
+        <div class="info-card-head">
+            <div class="header-text">
+                <h1>Weather Information</h1>
             </div>
         </div>
-        <div class="info-card-body-days">
-            <div class="day-1 day">
-                <p>{{{days.d1.date}}}</p>
-                <p>{{{days.d1.high_low}}}</p>
+        <div class="info-card-body">
+            <div class="info-card-body-description">
+                <h2 id="tag-location">{{{forecast.location}}}</h2>
+                <p id="tag-time"></p>
+                <div class="rows">
+                    <div class="fields">
+                        <h1 id="tag-temp">{{{forecast.temp}}}</h1>
+                        <h3 id="tag-status">{{{forecast.status}}}</h3>
+                        <p id="tag-feels-like">Feels Like: {{{forecast.feels-like}}}</p>
+                        <p id="tag-high">High: {{{forecast.high}}}</p>
+                        <p id="tag-low">Low: {{{forecast.low}}}</p>
+                        <p id="tag-humidity">Humidity: {{{forecast.humidity}}}</p>
+                    </div>
+                    <div class="weather-image">
+                        <img src={{{forecast.image.img1}}} />
+                    </div>
+                </div>
+                <form method="POST">
+                    <button type="submit" formmethod="POST">Search for another location</button>
+                </form>
             </div>
-            <div class="day-2 day">
-                <p>{{{days.d2.date}}}</p>
-                <p>{{{days.d2.high_low}}}</p>
-            </div>
-            <div class="day-3 day">
-                <p>{{{days.d3.date}}}</p>
-                <p>{{{days.d3.high_low}}}</p>
-            </div>
-            <div class="day-4 day">
-                <p>{{{days.d4.date}}}</p>
-                <p>{{{days.d4.high_low}}}</p>
-            </div>
-            <div class="day-5 day">
-                <p>{{{days.d5.date}}}</p>
-                <p>{{{days.d5.high_low}}}</p>
+            <div class="info-card-body-days">
+                {{#each days}}
+                <div class="day">
+                    <div class="day-temp">
+                        <p>{{date}}</p>
+                        <p>H:{{highest_temp}}°F/L:{{lowest_temp}}°F</p>
+                    </div>
+                    <div class="day-weather">
+                        <img src="{{{image}}}" />
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
 </div>
+<style>
+    .info-card {
+        background-image: {{{forecast.image.img2}}};
+    }
+</style>
+<script>
+    const d = new Date();
+    document.getElementById("tag-time").innerHTML = d.toLocaleTimeString();
+</script>

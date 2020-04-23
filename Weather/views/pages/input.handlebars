@@ -1,16 +1,45 @@
 <div class="form-card">
     <div class="form-card-head">
-        <h1>Search by Location</h1>
     </div>
     <div class="form-card-body">
-        <form method="POST">
-            <label for="City">City</label>
-            <input type="text" id="City" name="City" />
-            <label for="State">State</label>
-            <input type="text" id="State" name="State" />
-            <label for="Zip">Zip</label>
-            <input type="text" id="Zip" name="Zip" />
-            <button type="submit">Submit</button>
-        </form>
+        <div class="side-1">
+            <h1>Search by Location</h1>
+            <div class="by">
+                <form method="POST">
+                    <span>
+                        <div class="label-thing">
+                            <label for="City">City:</label>
+                        </div>
+                        <input type="text" id="City" name="City" />
+                    </span>
+                    <span>
+                        <div class="label-thing">
+                            <label for="State">State:</label>
+                        </div>
+                        <input type="text" id="State" name="State" />
+                    </span>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <h1>Search by ZIP Code</h1>
+            <div class="by">
+                <form method="POST">
+                    <span>
+                        <div class="label-thing">
+                            <label for="Zip">Zip:</label>
+                        </div>
+                        <input type="text" id="Zip" name="Zip" />
+                    </span>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="side-2">
+            <p>This tool displays the current weather as well as the high and low forecast for the next 5 days!</p>
+            <p>The free OpenWeatherMap API is used to gather the information.</p>
+            <p>The high and low temperatures are calculated using eight measurements throughout each day in 3-hour intervals.</p>
+            <p>Thanks for visiting!</p>
+            <img src="/images/smiley.png" />
+        </div>
     </div>
 </div>

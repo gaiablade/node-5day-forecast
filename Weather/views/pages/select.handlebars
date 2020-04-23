@@ -1,0 +1,12 @@
+<div class="selection-list">
+    <h1>{{{city}}}</h1>
+    <div class="selection-body">
+        <form method="POST">
+            <div class="selection-flex">
+                {{#each list}}
+                <button type="submit" formmethod="POST" value="{{code}}" name="code">{{#if state}}{{{state}}},{{/if}} {{country}}</button>
+                {{/each}}
+            </div>
+        </form>
+    </div>
+</div>
