@@ -14,7 +14,7 @@ const fs = require("fs");
  *  and it is not included in the GitHub repository, hence the error throw.
  */
 const config = {
-    port: 3000, // 3000 for localhost, 80 for server
+    port: 3000,
     app_id: ""
 }
 if (config.app_id == "") throw new Error("No APPID Defined!");
@@ -89,6 +89,25 @@ app.route("/Weather/Info/:location").get((req, res) => {
     // Generate URL for current weather API:
     const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?${req.params.location}&APPID=${config.app_id}&units=imperial`;
 
+    // Check if cached:
+    const id = String(req.params.location);
+    const filename = `${__dirname}/cached/${id.substr(3, id.length - 3)}.json`;
+    if (fs.existsSync(filename)) {
+        const cachedFile = JSON.parse(fs.readFileSync(filename));
+        const currTime = new Date();
+        const lastTime = new Date(Number(cachedFile.time));
+        if (currTime.getTime() - 600000 <= lastTime.getTime()) {
+            console.log("cached file loaded");
+            res.render("weather", {
+                title: cachedFile.body.title,
+                forecast: cachedFile.body.forecast,
+                weather: cachedFile.body.weather,
+                days: cachedFile.body.days
+            });
+            return;
+        }
+    }
+
     // Request 5-day forecast:
     let request = unirest.get(forecastURL);
     request.end((response1) => {
@@ -118,7 +137,18 @@ app.route("/Weather/Info/:location").get((req, res) => {
                 humidity: response2.body.main.humidity,
                 time: currTime.toLocaleTimeString()
             }
-            console.log(days);
+            // cache it:
+            const thisTime = new Date();
+            const toCache = {
+                time: thisTime.getTime(),
+                body: {
+                    title: `${forecast.location} Weather`,
+                    forecast: forecast,
+                    weather: weather,
+                    days: days
+                }
+            }
+            fs.writeFileSync(`${__dirname}/cached/${req.params.location.substr(3, req.params.location.length - 3)}.json`, JSON.stringify(toCache, null, 2));
             res.render("weather", {
                 title: `${forecast.location} Weather`,
                 forecast: forecast,

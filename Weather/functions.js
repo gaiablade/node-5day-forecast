@@ -6,12 +6,10 @@
  * @param {Object} locations 
  */
 function wParse(request, cityList, abbrev) {
-    console.log(request);
     if (request.City != undefined) {
         let cityName = nameify(request.City);
         let stateAbbrev = stateToAbbrev(request.State, abbrev);
         if (cityList[cityName] != undefined) {
-            console.log("here");
             if (stateAbbrev != "") {
                 for (let i = 0; i < cityList[cityName].instances.length; i++) {
                     if (cityList[cityName].instances[i].state == stateAbbrev) {
